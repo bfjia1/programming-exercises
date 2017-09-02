@@ -62,6 +62,26 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 }
 ```
 
+#### PYTHON
+```python
+ def addTwoNumbers(self, l1, l2):
+        carry = 0
+        head = ListNode(0)
+        tail = head
+        while l1 is not None or l2 is not None:
+            v1 = l1.val if l1 is not None else 0
+            v2 = l2.val if l2 is not None else 0
+            sum = v1 + v2 + carry
+            carry = 0 if sum < 10 else 1
+            tail.next = ListNode(sum % 10)
+            tail = tail.next
+            l1 = l1.next if l1 is not None else None
+            l2 = l2.next if l2 is not None else None
+        if carry > 0:
+            tail.next = ListNode(carry)
+        return head.next
+```
+
 #### Complexity Analysis
 
 Time complexity : O(max(m,n)). Assume that m and nn represents the length of l1 and l2 respectively, the algorithm above iterates at most max(m,n) times.
